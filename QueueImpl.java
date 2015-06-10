@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class QueueImpl<T> implements Queue<T>
 {
 	private List<T> myObjects;
