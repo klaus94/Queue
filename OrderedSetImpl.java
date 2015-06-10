@@ -20,7 +20,7 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 	}
 
 	// IMPLEMENTATION OF ORDEREDSET:
-	public boolean add(T obj)
+	public boolean add(T obj) throws NullPointerException
 	{
 
 		if (obj == null)
@@ -40,7 +40,7 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 
 	}
 
-	public void add(int i, T obj)
+	public void add(int i, T obj) throws NullPointerException
 	{
 
 		if (obj == null)
@@ -57,7 +57,7 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 	}
 
 	// replaces the object at the index i with obj
-	public T set(int i, T obj)
+	public T set(int i, T obj) throws NullPointerException, IndexOutOfBoundsException
 	{
 		if (obj == null)
 		{
@@ -81,12 +81,12 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 
 	}
 
-	public boolean addAll(Collection<? extends T> collection)
+	public boolean addAll(Collection<? extends T> collection) throws UnsupportedOperationException
 	{
 		throw new UnsupportedOperationException("not supported operation");
 	}
 
-	public boolean addAll(int i, Collection<? extends T> collection)
+	public boolean addAll(int i, Collection<? extends T> collection) throws UnsupportedOperationException
 	{
 		throw new UnsupportedOperationException("not supported operation");
 	}
@@ -100,6 +100,7 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 
 	public OrderedSetImpl(int initialCapacity)
 	{
+		orderedSet = new ArrayList<T>(initialCapacity);
 		// TODO:
 		// how to fill orderedSet just with a given initialCapacity???
 		// adding this amount of null-objects cannot be right...
