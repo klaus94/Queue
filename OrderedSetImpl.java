@@ -19,6 +19,23 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 		return false;
 	}
 
+
+	// CONSTRUCTORS:
+	public OrderedSetImpl()
+	{
+		orderedSet = new ArrayList<T>();
+	}
+
+	public OrderedSetImpl(int initialCapacity)
+	{
+		if (initialCapacity < 0)
+		{
+			throw new IllegalArgumentException("initial capacity should be non-negative");
+		}
+		orderedSet = new ArrayList<T>(initialCapacity);
+	}
+
+
 	// IMPLEMENTATION OF ORDEREDSET:
 	public boolean add(T obj) throws NullPointerException
 	{
@@ -71,7 +88,7 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 
 		if (!setContains(obj))
 		{
-			T oldElem = orderedSet.get(i);
+			T oldElem = get(i);
 			orderedSet.set(i, obj);
 
 			return oldElem;
@@ -92,19 +109,31 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 	}
 
 
-	// OWN METHODS:
-	public OrderedSetImpl()
+	// dont know, why necessary. but works
+	public int size()
 	{
-		orderedSet = new ArrayList<T>();
+		return orderedSet.size();
 	}
 
-	public OrderedSetImpl(int initialCapacity)
+	public T get(int i)
 	{
-		orderedSet = new ArrayList<T>(initialCapacity);
-		// TODO:
-		// how to fill orderedSet just with a given initialCapacity???
-		// adding this amount of null-objects cannot be right...
+		if (i >= size())
+		{
+			throw new IndexOutOfBoundsException("not possible");
+		}
+		return orderedSet.get(i);
 	}
 
+	public boolean contains(Object obj)
+	{
+		for (T elem: orderedSet)
+		{
+			if (elem.equals(obj))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

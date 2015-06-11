@@ -3,7 +3,7 @@ import java.util.Set;
 import java.util.List;
 
 
-interface OrderedSet<T> extends List<T>, Set<T>
+public interface OrderedSet<T> extends List<T>, Set<T>
 {
 	// Appends the specified element t to this set if this set does not contain an element other corresponding to other.equals(t).
 	public boolean add(T obj);
@@ -20,4 +20,5 @@ interface OrderedSet<T> extends List<T>, Set<T>
 
 	// Throws an UnsupportedOperationException upon invocation because this method is not supported.
 	public boolean addAll(int i, Collection<? extends T> collection);
+
 }
