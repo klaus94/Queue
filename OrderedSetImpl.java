@@ -5,34 +5,21 @@ import java.util.ArrayList;
 
 public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 {
-	private List<T> orderedSet; 
-
-	// returns true if set contains obj
-	private boolean setContains(T obj)
-	{
-		for (T elem: orderedSet)
-		{
-			if (elem.equals(obj))
-				return true;
-		}
-
-		return false;
-	}
-
 
 	// CONSTRUCTORS:
 	public OrderedSetImpl()
 	{
-		orderedSet = new ArrayList<T>();
+		super();
 	}
 
 	public OrderedSetImpl(int initialCapacity)
 	{
+		super(initialCapacity);
 		if (initialCapacity < 0)
 		{
 			throw new IllegalArgumentException("initial capacity should be non-negative");
 		}
-		orderedSet = new ArrayList<T>(initialCapacity);
+		
 	}
 
 
@@ -45,9 +32,9 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 			throw new NullPointerException("Object should not be null!");
 		}
 
-		if (!setContains(obj))
+		if (!super.contains(obj))
 		{
-			orderedSet.add(obj);
+			super.add(obj);
 			return true;
 		}
 		else 
@@ -66,9 +53,9 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 		}
 
 
-		if (!setContains(obj))
+		if (!super.contains(obj))
 		{
-			orderedSet.add(i, obj);
+			super.add(i, obj);
 		}
 
 	}
@@ -81,20 +68,20 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 			throw new NullPointerException("Object should not be null!");
 		}
 
-		if (i >= orderedSet.size())
+		if (i >= super.size())
 		{
 			throw new IndexOutOfBoundsException("index was too big");
 		}
 
-		if (!setContains(obj))
+		if (!super.contains(obj))
 		{
-			T oldElem = get(i);
-			orderedSet.set(i, obj);
+			T oldElem = super.get(i);
+			super.set(i, obj);
 
 			return oldElem;
 		}
 		else
-			return null;			// set contains obj already
+			return null;			// set already contains obj 
 
 	}
 
@@ -106,34 +93,6 @@ public class OrderedSetImpl<T> extends ArrayList<T> implements OrderedSet<T>
 	public boolean addAll(int i, Collection<? extends T> collection) throws UnsupportedOperationException
 	{
 		throw new UnsupportedOperationException("not supported operation");
-	}
-
-
-	// dont know, why necessary. but works
-	public int size()
-	{
-		return orderedSet.size();
-	}
-
-	public T get(int i)
-	{
-		if (i >= size())
-		{
-			throw new IndexOutOfBoundsException("not possible");
-		}
-		return orderedSet.get(i);
-	}
-
-	public boolean contains(Object obj)
-	{
-		for (T elem: orderedSet)
-		{
-			if (elem.equals(obj))
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 
 }
