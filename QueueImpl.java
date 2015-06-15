@@ -17,13 +17,7 @@ public class QueueImpl<T> implements Queue<T>
 		if (o == null) {
 			throw new NullPointerException("Obj darf nicht null sein.");
 		} else {
-			List<T> vergleich = myObjects;
-			myObjects.add(o);
-			if (myObjects.equals(o)) {
-				return false;
-			} else {
-				return true;
-			}
+			return myObjects.add(o);
 		}
 	}
 
@@ -36,7 +30,7 @@ public class QueueImpl<T> implements Queue<T>
 		}
 	}
 
-	public T front()
+	public T first()
 	{
 		if (isEmpty()) {
 			return null;

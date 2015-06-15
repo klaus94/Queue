@@ -4,7 +4,7 @@ interface Queue<T>
 
 	public T remove();
 
-	public T front();
+	public T first();
 
 	public boolean isEmpty();
 
